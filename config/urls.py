@@ -16,6 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from garagem.models import vehicle, brand, customer,  acessory,  model, category,  color
+
+admin.site.register(vehicle)
+admin.site.register(brand)
+admin.site.register(customer)
+admin.site.register(acessory)
+admin.site.register(model)
+admin.site.register(category)
+admin.site.register(color)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
