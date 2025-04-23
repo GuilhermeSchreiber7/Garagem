@@ -3,14 +3,14 @@ from django.db import models
 # Create your models here.
 
 class acessory(models.Model):
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100) 
 
     def __str__(self):
         return f"{self.description}"
     
 
 class color(models.Model):
-    description = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.description}"
@@ -26,7 +26,7 @@ class brand(models.Model):
 
     def __str__(self):
         return f"{self.description}"
-        
+
 class model(models.Model):
     category = models.ForeignKey(category, on_delete=models.PROTECT, related_name='models')
     brand = models.ForeignKey(brand, on_delete=models.PROTECT, related_name='models')
@@ -50,7 +50,7 @@ class customer(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    cars = models.ManyToManyField(vehicle, related_name='customers')
+    cars = models.ManyToManyField(vehicle, related_name='customers', blank=True)
 
     def __str__(self):
         return f"{self.name} {self.email} {self.phone} {self.cars}"
