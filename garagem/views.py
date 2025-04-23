@@ -1,7 +1,7 @@
-from django.shortcuts import ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from garagem.models import acessory,  color, category, brand,  model, vehicle, customer
-from garagem.serializers import AccessorySerializer, ColorSerializer,  CategorySerializer, BrandSerializer, ModelSerializer, VehicleSerializer, CustomerSerializer
+from garagem.serializers import AccessorySerializer, ColorSerializer,  CategorySerializer, BrandSerializer, ModelSerializer, VehicleSerializer, CustomerSerializer, VehicleListSerializer, VehicleDetailSerializer
 
 # Create your views here.
 
@@ -27,7 +27,13 @@ class ModelViewSet(ModelViewSet):
 
 class VehicleViewSet(ModelViewSet):
     queryset = vehicle.objects.all()
-    serializer_class = VehicleSerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return VehicleListSerializer  
+        elif self.action == "retrieve":
+            return VehicleDetailSerializer
+        return VehicleSerializer 
 
 class CustomerViewSet(ModelViewSet):
     queryset = customer.objects.all()
