@@ -39,6 +39,22 @@ class VehicleSerializer(ModelSerializer):
         fields = '__all__'
         read_only_fields = ['id']
 
+class VehicleDetailSerializer(ModelSerializer):
+    class Meta:
+        model = vehicle
+        fields = '__all__'
+        depth = 1
+        read_only_fields = ['id']
+
+class VehicleListSerializer(ModelSerializer):
+    class Meta:
+        model = vehicle
+        fields = ['id', 'brand', 'model', 'year', 'color', 'customer']
+        read_only_fields = ['id']
+        depth = 1
+
+    
+
 class CustomerSerializer(ModelSerializer):
     class Meta:
         model = customer
